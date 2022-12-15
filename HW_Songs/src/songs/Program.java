@@ -18,23 +18,23 @@
 // ДОРАБОТАТЬ ПУНКТЫ С ИНКАПСУЛЯЦИЕЙ И ПОСЛЕДНИМ ЗАДАНИЕМ!!!
 
 package songs;
+import java.util.ArrayList;
 
+// Класс для создания сущностей Track.
 final class Track {
-	String Name;
-	String Author;
-	String CoAuthor;
-	Album A;
+	String Name;		// название трека
+	String Author;		// имя автора
+	String CoAuthor;	// имя соавтора
+	Album A;			// альбом
 	
-	Track() {
-		
-	}
-	
-	Track(String name, Album a) {
-		Name = name;
+	// Конструктор класса для создания сущности с указанием названия трека и альбома.
+	Track(String n, Album a) {
+		Name = n;
 		Author = a.Author;
 		A = a;
 	}
 	
+	// Конструктор класса для создания сущности с указанием названия трека, его автора и альбома.
 	Track(String name, String coAuthor, Album a) {
 		Name = name;
 		Author = a.Author;
@@ -42,36 +42,29 @@ final class Track {
 		A = a;
 	}
 	
+	// Метод приведения к строке.
 	public String toString() { 
-		if (CoAuthor != null) {
-			return Name + ", " + "авторы: " + Author + ", "+ CoAuthor;
+		if (A != null) {
+			return Name + ", " + "авторы: " + Author + ", "+ CoAuthor + ", " + A.Name + " " + A.Author;
 		}
 		
 		return Name + ", " + "автор: " + Author;
 	}
+	
+	public void showTracks() {
+		System.out.println(A.Name);
+	}
 }
 
+// Класс для создания сущностей Album.
 class Album {
-	String Name;
-	String Author;
-	Track T;
+	String Name;	// название альбома
+	String Author;	// автор альбома
 	
-	Album() {
-		
+	Album (String n, String a) {
+		Name = n;
+		Author = a;
 	}
-	
-	Album (String name, String author) {
-		Name = name;
-		Author = author;
-	}
-	
-//	public String toString() {
-//		return 
-//	}
-
-//	public String toString() { 
-//		return Name + Author;
-//	}
 }
 
 public class Program {
@@ -80,15 +73,22 @@ public class Program {
 		Album a1 = new Album ("Кукловод", "Металлов");
 		Album a2 = new Album ("Шоссе к ООП", "Асид");
 		
+		ArrayList <Track> tracks = new ArrayList <Track>();
+//		
 		Track t1 = new Track ("Состояние объектов", "Янг", a2);
 		Track t2 = new Track ("Шоссе к ООП", a2);
 		Track t3 = new Track ("Одноразовый программист", "Бертон", a1);
+		tracks.add(t1);
+		tracks.add(t2);
+		tracks.add(t3);
+		System.out.println(tracks);
 		
-		System.out.println(t1);
-		System.out.println(t2);
-		System.out.println(t3);
+//		System.out.println(t1);
+//		System.out.println(t2);
+//		System.out.println(t3);
 		
-		System.out.println(t1);
+		t1.showTracks();
+		
+//		System.out.println(t1.A);
 	}
-
 }
